@@ -1,0 +1,12 @@
+{
+  "name": "ClickBox PK",
+  "short_name": "ClickBox PK",
+  "description": "E-Testing, Typing Master, Flash Games and more.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6f7f9",
+  "theme_color": "#0b5cc2",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}

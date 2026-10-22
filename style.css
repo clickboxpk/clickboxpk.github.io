@@ -1,0 +1,196 @@
+/* ClickBox PK – minimal, system fonts only (no font downloads = fastest) */
+
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #14161a;
+  --muted: #62676f;
+  --line: #e3e6ea;
+  --accent: #0b5cc2;
+  --brand-orange: #f7821b;
+  --accent-ink: #ffffff;
+  --radius: 12px;
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1013;
+    --surface: #16191e;
+    --ink: #eef0f3;
+    --muted: #9097a1;
+    --line: #242830;
+    --accent: #5b9dff;
+    --accent-ink: #0e1013;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1013;
+  --surface: #16191e;
+  --ink: #eef0f3;
+  --muted: #9097a1;
+  --line: #242830;
+  --accent: #5b9dff;
+  --accent-ink: #0e1013;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+
+/* Header */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; }
+
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 650; letter-spacing: -0.01em; }
+
+.brand img { display: block; width: 34px; height: 34px; }
+.word { font-size: 1.05rem; }
+.word span { color: var(--brand-orange); }
+
+.hero-logo { display: block; width: 88px; height: 88px; margin: 0 0 24px; }
+
+.foot-brand { display: inline-flex; align-items: center; gap: 8px; }
+.foot-brand img { display: block; }
+
+.theme {
+  display: grid; place-items: center;
+  width: 38px; height: 38px;
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 10px;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.theme:hover { color: var(--ink); border-color: var(--muted); }
+
+/* Hero */
+.hero { padding: 56px 0 48px; }
+
+h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2.1rem, 7vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  max-width: 20ch;
+}
+
+.lead { margin: 0; color: var(--muted); font-size: 1.1rem; max-width: 46ch; }
+
+/* Toolbar */
+.bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  padding-bottom: 14px;
+}
+
+h2 { margin: 0; font-size: 1rem; font-weight: 650; }
+.count { color: var(--muted); font-weight: 400; margin-left: 4px; }
+
+.search input {
+  width: 240px; max-width: 100%;
+  padding: 9px 12px;
+  font: inherit; font-size: 16px; /* 16px se kam ho to iPhone zoom kar deta hai */
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  transition: border-color .15s;
+}
+.search input::placeholder { color: var(--muted); }
+.search input:hover { border-color: var(--muted); }
+.search input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+
+/* List */
+.list {
+  list-style: none; margin: 0; padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.item { border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding: 18px 20px;
+  transition: background .15s;
+}
+.row:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+
+.name { font-weight: 600; letter-spacing: -0.01em; }
+.desc { grid-column: 1; margin: 0; color: var(--muted); font-size: .94rem; }
+.meta { grid-column: 1; display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: .84rem; margin-top: 4px; }
+
+.actions { grid-column: 2; grid-row: 1 / span 3; display: flex; align-items: center; gap: 8px; }
+
+.btn {
+  padding: 7px 13px;
+  font-size: .86rem; font-weight: 600;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  white-space: nowrap;
+  transition: border-color .15s, background .15s;
+}
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+/* Loading + messages */
+.skeleton { height: 84px; border-top: 1px solid var(--line); background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--muted) 10%, transparent), transparent); background-size: 200% 100%; animation: sheen 1.2s linear infinite; }
+.skeleton:first-child { border-top: 0; }
+@keyframes sheen { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+.status { color: var(--muted); text-align: center; padding: 24px 0 0; margin: 0; }
+.status a { color: var(--accent); font-weight: 600; }
+
+/* Footer */
+.foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 56px; color: var(--muted); font-size: .88rem; }
+.foot a:hover { color: var(--ink); }
+
+@media (max-width: 560px) {
+  .hero { padding: 36px 0 32px; }
+  .hero-logo { width: 72px; height: 72px; margin-bottom: 18px; }
+  .row { grid-template-columns: 1fr; }
+  .actions { grid-column: 1; grid-row: auto; margin-top: 10px; }
+  .search, .search input { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* About */
+.about { padding: 0 0 40px; }
+.about h2 { margin-bottom: 8px; }
+.about p { margin: 0; color: var(--muted); max-width: 60ch; }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clickboxpk.github.io/sitemap.xml
