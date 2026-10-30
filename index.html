@@ -236,10 +236,19 @@ $("#yr").textContent=new Date().getFullYear();
 
 /* go */
 $("#grid").innerHTML='<div class="skel"></div>'.repeat(6);
-load().then(repos=>{
-  // sirf wo repos jin ka GitHub Pages published hai (has_pages = true); unpublish karte hi hide
-  items = repos.filter(r=>r.has_pages && !r.fork && !r.archived && !r.private && !SKIP.includes(r.name.toLowerCase()))
-               .sort((a,b)=>new Date(b.pushed_at)-new Date(a.pushed_at)).map(enrich);
+/* Site asal me live hai ya nahi: us ka URL khol kar dekhta hai (404 = unpublished/error → card hide).
+   Ye github.io par same-origin hai, isliye GitHub API ya cache par depend nahi. */
+async function isLive(p){
+  try{
+    if(new URL(p.url).origin !== location.origin) return true;   // dusre domain ko check nahi kar sakte
+    const r = await fetch(p.url, {method:"GET", cache:"no-store"});
+    return r.status !== 404 && r.status !== 410;
+  }catch(e){ return true; }   // network masla ho to card na chhupao
+}
+load().then(async repos=>{
+  const cand = repos.filter(r=>!r.fork && !r.archived && !r.private && !SKIP.includes(r.name.toLowerCase())).map(enrich);
+  const live = await Promise.all(cand.map(isLive));
+  items = cand.filter((_,i)=>live[i]).sort((a,b)=>new Date(b.pushed)-new Date(a.pushed));
   chips(); draw();
 }).catch(e=>{
   $("#grid").innerHTML=`<div class="err" style="grid-column:1/-1">Projects load nahi ho sake (${esc(e.message)}). Thori der baad dobara try karein.</div>`;
