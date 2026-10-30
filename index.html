@@ -114,7 +114,7 @@ footer a:hover{color:var(--blue)}
 
 <footer><div class="wrap">
   <span><img src="logo.png" alt="" onerror="this.style.display='none'">© <span id="yr"></span> ClickBox PK</span>
-  <a href="https://github.com/clickboxpk" target="_blank" rel="noopener">GitHub profile</a>
+  <span>Built for everyday use</span>
 </div></footer>
 
 <script>
@@ -123,6 +123,7 @@ const USER = "clickboxpk";
 const SKIP = [USER + ".github.io"];        // profile repo ko list se hide karo
 const NEW_DAYS = 7;                        // itne din tak "NEW" badge
 const CACHE_MIN = 10;                      // API cache (rate limit se bachne ke liye)
+const IGNORE_TOPICS = ["github-pages","html","javascript","css","website"]; // category nahi banenge
 
 /* Optional: kisi project ko apni marzi se likhna ho to yahan add karo.
    Naya repo bina yahan likhe bhi auto show hoga. */
@@ -161,13 +162,17 @@ function ago(d){
 }
 function enrich(r){
   const o = OVERRIDES[r.name.toLowerCase()] || {};
-  const rule = RULES.find(x=>x.re.test(r.name)) || RULES.at(-1);
-  const byCat = o.cat ? (RULES.find(x=>x.cat===o.cat)||rule) : rule;
+  // GitHub topic (e.g. "flash-games") = nayi category khud ban jati hai
+  const topic = (r.topics||[]).find(t=>!IGNORE_TOPICS.includes(t));
+  const topicCat = topic ? pretty(topic) : "";
+  const finalCat = o.cat || topicCat;
+  const rule = RULES.find(x=>x.re.test(finalCat+" "+r.name)) || RULES.at(-1);
+  const byCat = rule;
   return {
     name:r.name,
     title:o.title || pretty(r.name),
     desc:o.desc || r.description || rule.desc,
-    cat:o.cat || rule.cat,
+    cat:finalCat || rule.cat,
     icon:byCat.icon, g:byCat.g,
     url:r.homepage && /^https?:/.test(r.homepage) ? r.homepage : `https://${USER}.github.io/${r.name}/`,
     pushed:r.pushed_at,
