@@ -237,7 +237,8 @@ $("#yr").textContent=new Date().getFullYear();
 /* go */
 $("#grid").innerHTML='<div class="skel"></div>'.repeat(6);
 load().then(repos=>{
-  items = repos.filter(r=>!r.fork && !r.archived && !r.private && !SKIP.includes(r.name.toLowerCase()))
+  // sirf wo repos jin ka GitHub Pages published hai (has_pages = true); unpublish karte hi hide
+  items = repos.filter(r=>r.has_pages && !r.fork && !r.archived && !r.private && !SKIP.includes(r.name.toLowerCase()))
                .sort((a,b)=>new Date(b.pushed_at)-new Date(a.pushed_at)).map(enrich);
   chips(); draw();
 }).catch(e=>{
