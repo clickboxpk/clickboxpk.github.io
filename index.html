@@ -1,126 +1,243 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>ClickBox PK – E-Testing, Typing Master &amp; Flash Games</title>
-  <meta name="description" content="ClickBox PK offers E-Testing, Typing Master, Flash Games and more. Browse all projects, open them live or view the source code.">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta name="author" content="ClickBox PK">
-  <link rel="canonical" href="https://clickboxpk.github.io/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClickBox PK: E-Testing, Typing Master and Flash Games</title>
+<meta name="description" content="Small web tools, built to be used. E-Testing, Typing Master, flash games and more by ClickBox PK.">
+<meta property="og:title" content="ClickBox PK">
+<meta property="og:description" content="E-Testing, Typing Master, flash games and more web tools.">
+<meta property="og:image" content="https://clickboxpk.github.io/logo.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="logo.png">
+<style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --text:#0f172a; --muted:#64748b; --line:#e5e7ef;
+  --blue:#0b5ed7; --orange:#f58220; --shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06);
+  --shadow-h:0 2px 4px rgba(15,23,42,.06),0 18px 40px rgba(11,94,215,.18);
+}
+:root[data-theme="dark"]{
+  --bg:#0b1020; --card:#131a30; --text:#e8ecf8; --muted:#93a0bd; --line:#232c49;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --shadow-h:0 2px 4px rgba(0,0,0,.4),0 18px 40px rgba(11,94,215,.35);
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;transition:background .2s,color .2s}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
 
-  <!-- Google Search Console verification: apna code yahan lagayein, phir comment hata dein
-  <meta name="google-site-verification" content="YOUR_CODE_HERE">
-  -->
+/* header */
+header{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand img{width:34px;height:34px;object-fit:contain}
+.brand b{color:var(--orange)}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;font-size:18px}
+.iconbtn:hover{border-color:var(--blue)}
 
-  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0e1013" media="(prefers-color-scheme: dark)">
+/* hero */
+.hero{padding:56px 0 28px;position:relative}
+.hero::before{content:"";position:absolute;inset:-80px -10% auto auto;width:520px;height:520px;background:radial-gradient(closest-side,rgba(11,94,215,.18),transparent);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:40px auto auto -10%;width:380px;height:380px;background:radial-gradient(closest-side,rgba(245,130,32,.14),transparent);pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.logo-lg{width:96px;height:96px;object-fit:contain;margin-bottom:18px;filter:drop-shadow(0 10px 18px rgba(11,94,215,.25))}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.04;letter-spacing:-.035em;font-weight:800;max-width:900px}
+h1 span{background:linear-gradient(90deg,var(--blue),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:16px;color:var(--muted);font-size:18px;max-width:560px}
+.about{margin-top:34px;max-width:680px}
+.about h2{font-size:16px;margin-bottom:6px}
+.about p{color:var(--muted)}
 
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="ClickBox PK">
-  <meta property="og:title" content="ClickBox PK – E-Testing, Typing Master &amp; Flash Games">
-  <meta property="og:description" content="E-Testing, Typing Master, Flash Games and more. All ClickBox PK projects in one place.">
-  <meta property="og:url" content="https://clickboxpk.github.io/">
-  <meta property="og:image" content="https://clickboxpk.github.io/assets/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="ClickBox PK logo: an open box with a cursor">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ClickBox PK – E-Testing, Typing Master &amp; Flash Games">
-  <meta name="twitter:description" content="E-Testing, Typing Master, Flash Games and more.">
-  <meta name="twitter:image" content="https://clickboxpk.github.io/assets/og-image.jpg">
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin:44px 0 18px}
+.toolbar h2{font-size:20px}
+.toolbar h2 small{color:var(--muted);font-weight:500;margin-left:8px}
+.search{flex:1;max-width:340px;min-width:200px;padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:15px;outline:none}
+.search:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(11,94,215,.12)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chip{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:14px;cursor:pointer;font-weight:600}
+.chip.on,.chip:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
+/* grid + cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:transform .22s,box-shadow .22s,border-color .22s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-h);border-color:color-mix(in srgb,var(--blue) 50%,var(--line))}
+.thumb{position:relative;aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden;color:#fff}
+.thumb .glyph{font-size:54px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .4s}
+.thumb img.ok{opacity:1}
+.badge{position:absolute;top:12px;left:12px;z-index:2;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.92);color:#0f172a}
+.new{position:absolute;top:12px;right:12px;z-index:2;font-size:11px;font-weight:800;padding:4px 9px;border-radius:999px;background:var(--orange);color:#fff}
+.body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.body h3{font-size:18px;letter-spacing:-.01em}
+.body p{color:var(--muted);font-size:14.5px;flex:1}
+.foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--muted)}
+.open{font-weight:700;color:var(--blue);display:inline-flex;gap:6px;align-items:center}
+.card:hover .open{color:var(--orange)}
+.open span{transition:transform .2s}
+.card:hover .open span{transform:translateX(4px)}
+.empty,.err{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+.skel{height:300px;border-radius:20px;background:linear-gradient(90deg,var(--card),var(--line),var(--card));background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
 
-  <link rel="preconnect" href="https://api.github.com" crossorigin>
-  <link rel="preload" href="style.css" as="style">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://clickboxpk.github.io/#website",
-        "url": "https://clickboxpk.github.io/",
-        "name": "ClickBox PK",
-        "description": "E-Testing, Typing Master, Flash Games and more.",
-        "inLanguage": "en",
-        "publisher": { "@id": "https://clickboxpk.github.io/#org" }
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://clickboxpk.github.io/#org",
-        "name": "ClickBox PK",
-        "url": "https://clickboxpk.github.io/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://clickboxpk.github.io/assets/icon-192.png",
-          "width": 192,
-          "height": 192
-        },
-        "sameAs": ["https://github.com/clickboxpk"]
-      }
-    ]
-  }
-  </script>
-
-  <script>
-    /* Apply saved theme before first paint (prevents flash) */
-    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
-  </script>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+footer{margin-top:70px;border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+footer img{width:20px;height:20px;vertical-align:-4px;margin-right:6px}
+footer a:hover{color:var(--blue)}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero{padding-top:36px}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <a class="brand" href="./" aria-label="ClickBox PK home">
-        <img src="assets/logo-icon.png" alt="" width="34" height="34">
-        <span class="word">ClickBox<span>PK</span></span>
-      </a>
-      <button class="theme" id="theme" type="button" aria-label="Switch light or dark theme">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-    </header>
+<header><div class="wrap nav">
+  <a class="brand" href="./"><img src="logo.png" alt="" onerror="this.style.display='none'">ClickBox<b>PK</b></a>
+  <button class="iconbtn" id="theme" aria-label="Toggle theme">☀</button>
+</div></header>
 
-    <main>
-      <section class="hero">
-        <img class="hero-logo" src="assets/logo-icon.png" alt="ClickBox PK logo" width="88" height="88" fetchpriority="high">
-        <h1>ClickBox PK: E-Testing, Typing Master and Flash Games</h1>
-        <p class="lead">Small web tools, built to be used. Search a project, open it live, or read the code.</p>
-      </section>
+<main class="wrap">
+  <section class="hero">
+    <img class="logo-lg" src="logo.png" alt="ClickBox PK logo" onerror="this.style.display='none'">
+    <h1>ClickBox PK: <span>E-Testing, Typing Master</span> and Flash Games</h1>
+    <p class="sub">Small web tools, built to be used. Pick a project and open it live.</p>
+    <div class="about">
+      <h2>About ClickBox PK</h2>
+      <p>ClickBox PK is a growing collection of web-based tools: online E-Testing for practice and assessment, a Typing Master to build typing speed and accuracy, flash games for a quick break, and more projects on the way.</p>
+    </div>
+  </section>
 
-      <section class="about" aria-labelledby="about-title">
-        <h2 id="about-title">About ClickBox PK</h2>
-        <p>ClickBox PK is a growing collection of web-based tools: online E-Testing for practice and assessment, a Typing Master to build typing speed and accuracy, flash games for a quick break, and more projects on the way.</p>
-      </section>
-
-      <section aria-labelledby="projects-title">
-        <div class="bar">
-          <h2 id="projects-title">Projects <span class="count" id="count"></span></h2>
-          <label class="search">
-            <span class="sr">Search projects</span>
-            <input id="q" type="search" placeholder="Search projects…" autocomplete="off" spellcheck="false">
-          </label>
-        </div>
-
-        <ul class="list" id="list" aria-live="polite">
-          <li class="skeleton"></li><li class="skeleton"></li><li class="skeleton"></li>
-        </ul>
-        <p class="status" id="status" hidden></p>
-        <noscript><p class="status">Enable JavaScript to see the project list, or <a href="https://github.com/clickboxpk?tab=repositories">view all projects on GitHub</a>.</p></noscript>
-      </section>
-    </main>
-
-    <footer class="foot">
-      <span class="foot-brand"><img src="assets/logo-icon.png" alt="" width="20" height="20">© <span id="year"></span> ClickBox PK</span>
-      <a href="https://github.com/clickboxpk" rel="me noopener">GitHub profile</a>
-    </footer>
+  <div class="toolbar">
+    <h2>Projects<small id="count"></small></h2>
+    <input id="q" class="search" type="search" placeholder="Search projects…" autocomplete="off">
   </div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer><div class="wrap">
+  <span><img src="logo.png" alt="" onerror="this.style.display='none'">© <span id="yr"></span> ClickBox PK</span>
+  <a href="https://github.com/clickboxpk" target="_blank" rel="noopener">GitHub profile</a>
+</div></footer>
+
+<script>
+/* ============ SETTINGS ============ */
+const USER = "clickboxpk";
+const SKIP = [USER + ".github.io"];        // profile repo ko list se hide karo
+const NEW_DAYS = 7;                        // itne din tak "NEW" badge
+const CACHE_MIN = 10;                      // API cache (rate limit se bachne ke liye)
+
+/* Optional: kisi project ko apni marzi se likhna ho to yahan add karo.
+   Naya repo bina yahan likhe bhi auto show hoga. */
+const OVERRIDES = {
+  menubox:       { title:"MenuBox",        desc:"Digital menu tool for restaurants and cafes.", cat:"Tools" },
+  drivingtest:   { title:"Driving Test",   desc:"Practice driving theory tests online.", cat:"E-Testing" },
+  typingmaster:  { title:"Typing Master",  desc:"Build your typing speed and accuracy.", cat:"Typing" },
+  sms:           { title:"SMS",            desc:"Manage School, Academy and Skills Institute.", cat:"Management" },
+  oneclick:      { title:"OneClick",       desc:"Quick one-click web utilities.", cat:"Tools" },
+  kameti:        { title:"Kameti",         desc:"Track committee (kameti) members and payments.", cat:"Management" },
+  onlinetest:    { title:"Online Test",    desc:"Take tests online with instant results.", cat:"E-Testing" },
+  entrytest:     { title:"Entry Test",     desc:"Entry test preparation and practice.", cat:"E-Testing" },
+  clickworks:    { title:"ClickWorks",     desc:"Handy web tools for everyday work.", cat:"Tools" },
+  etesting:      { title:"E-Testing",      desc:"Online E-Testing for practice and assessment.", cat:"E-Testing" },
+  admissiontest: { title:"Admission Test", desc:"Admission test practice and assessment.", cat:"E-Testing" }
+};
+
+/* Naam se category/icon/description andaza lagao (naye repos ke liye) */
+const RULES = [
+  { re:/test|exam|quiz|mcq|assess/i, cat:"E-Testing", icon:"📝", g:["#0b5ed7","#3b82f6"], desc:"Online test and practice tool." },
+  { re:/typ|keyboard|wpm/i,          cat:"Typing",    icon:"⌨️", g:["#7c3aed","#a78bfa"], desc:"Improve your typing speed and accuracy." },
+  { re:/game|flash|play|puzzle/i,    cat:"Games",     icon:"🎮", g:["#f58220","#fbbf24"], desc:"A quick game for a short break." },
+  { re:/sms|school|academy|student|kameti|manage|crm|pos|invoice/i, cat:"Management", icon:"📊", g:["#059669","#34d399"], desc:"Management tool for day-to-day work." },
+  { re:/./,                          cat:"Tools",     icon:"🧰", g:["#0ea5e9","#6366f1"], desc:"A small web tool, ready to use." }
+];
+
+/* ============ HELPERS ============ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pretty = n => n.replace(/[-_]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+function ago(d){
+  const days = Math.floor((Date.now()-new Date(d))/864e5);
+  if(days<1) return "Updated today"; if(days===1) return "Updated yesterday";
+  if(days<30) return `Updated ${days} days ago`;
+  const m=Math.floor(days/30); return m<12?`Updated ${m} mo ago`:`Updated ${Math.floor(m/12)} yr ago`;
+}
+function enrich(r){
+  const o = OVERRIDES[r.name.toLowerCase()] || {};
+  const rule = RULES.find(x=>x.re.test(r.name)) || RULES.at(-1);
+  const byCat = o.cat ? (RULES.find(x=>x.cat===o.cat)||rule) : rule;
+  return {
+    name:r.name,
+    title:o.title || pretty(r.name),
+    desc:o.desc || r.description || rule.desc,
+    cat:o.cat || rule.cat,
+    icon:byCat.icon, g:byCat.g,
+    url:r.homepage && /^https?:/.test(r.homepage) ? r.homepage : `https://${USER}.github.io/${r.name}/`,
+    pushed:r.pushed_at,
+    isNew:(Date.now()-new Date(r.created_at))/864e5 <= NEW_DAYS
+  };
+}
+
+/* ============ DATA ============ */
+async function load(){
+  const key="cbpk_repos";
+  try{
+    const c=JSON.parse(localStorage.getItem(key)||"null");
+    if(c && Date.now()-c.t < CACHE_MIN*60000) return c.d;
+  }catch(e){}
+  let all=[], page=1;
+  while(true){
+    const res = await fetch(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed&page=${page}`);
+    if(!res.ok) throw new Error("GitHub API "+res.status);
+    const part = await res.json(); all = all.concat(part);
+    if(part.length<100) break; page++;
+  }
+  try{ localStorage.setItem(key, JSON.stringify({t:Date.now(), d:all})); }catch(e){}
+  return all;
+}
+
+/* ============ RENDER ============ */
+let items=[], cat="All";
+function card(p){
+  const shot = `https://image.thum.io/get/width/700/crop/440/${p.url}`;
+  return `<a class="card" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="Open ${esc(p.title)}">
+    <div class="thumb" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})">
+      <span class="glyph">${p.icon}</span>
+      <img src="${esc(shot)}" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <span class="badge">${esc(p.cat)}</span>${p.isNew?'<span class="new">NEW</span>':''}
+    </div>
+    <div class="body">
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.desc)}</p>
+      <div class="foot"><span>${ago(p.pushed)}</span><span class="open">Open live <span>→</span></span></div>
+    </div></a>`;
+}
+function draw(){
+  const q=$("#q").value.trim().toLowerCase();
+  const list=items.filter(p=>(cat==="All"||p.cat===cat) && (!q||(p.title+p.desc+p.cat+p.name).toLowerCase().includes(q)));
+  $("#count").textContent=items.length;
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<div class="empty" style="grid-column:1/-1">No projects found.</div>`;
+}
+function chips(){
+  const cats=["All",...new Set(items.map(p=>p.cat))];
+  $("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+}
+$("#chips").addEventListener("click",e=>{const b=e.target.closest(".chip"); if(!b) return; cat=b.dataset.c; chips(); draw();});
+$("#q").addEventListener("input",draw);
+
+/* theme */
+const root=document.documentElement;
+function setTheme(t){root.dataset.theme=t; $("#theme").textContent=t==="dark"?"☾":"☀"; try{localStorage.setItem("cbpk_theme",t)}catch(e){}}
+setTheme((()=>{try{return localStorage.getItem("cbpk_theme")}catch(e){}})() || (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+$("#theme").onclick=()=>setTheme(root.dataset.theme==="dark"?"light":"dark");
+$("#yr").textContent=new Date().getFullYear();
+
+/* go */
+$("#grid").innerHTML='<div class="skel"></div>'.repeat(6);
+load().then(repos=>{
+  items = repos.filter(r=>!r.fork && !r.archived && !r.private && !SKIP.includes(r.name.toLowerCase()))
+               .sort((a,b)=>new Date(b.pushed_at)-new Date(a.pushed_at)).map(enrich);
+  chips(); draw();
+}).catch(e=>{
+  $("#grid").innerHTML=`<div class="err" style="grid-column:1/-1">Projects load nahi ho sake (${esc(e.message)}). Thori der baad dobara try karein.</div>`;
+});
+</script>
 </body>
 </html>
